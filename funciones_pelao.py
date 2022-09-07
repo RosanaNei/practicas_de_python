@@ -1,4 +1,4 @@
-
+""" 
 def superficie_cuadrado(plado):
     return plado**2
 
@@ -62,3 +62,50 @@ diccionario = {'una': 1, 'dosa': 2, 'tresa': 3}
 for clave, valor in diccionario.items():
     print(clave + valor)
     
+#SCOPE DE LAS VARIABLES Y SU CASTEO
+x = 4
+def funcion():
+    x = 16
+    print(f'la var enclosed es x = {x}')
+    def funcion_interna():
+        x = 45
+        print(f'la local es x = {x}')
+    print(funcion_interna())
+    
+print(f'la global es {x} ')   
+funcion()
+
+#acá va la mala práctica     
+x = 8
+def funcion():
+    x = 32
+    def funcion_interna():
+        nonlocal x
+        x = 90
+        print(f'la local es x = {x}')
+    print(funcion_interna())
+    return x
+    
+print(f'la global es {x} ')   
+print(f'la enclosure es {funcion()} ') 
+
+def myfunc1():
+  x = 10
+  def myfunc2():
+    nonlocal x
+    x = 20
+  myfunc2()
+  return x
+
+print(myfunc1())   """
+
+#tres formas de imprimir una lista
+def lista_comidas(food):
+    for x in food:
+        me_comi = 'comí una %s' % x
+        me_comi = 'comí una {food}'.format(food=x)
+        me_comi = f'comí una {x} '
+        print(me_comi)
+        
+comidas = ['pera', 'manzana', 'banana']
+lista_comidas(comidas)

@@ -97,15 +97,49 @@ def myfunc1():
   myfunc2()
   return x
 
-print(myfunc1())   """
+print(myfunc1())  
 
-#tres formas de imprimir una lista
+#tres formas de imprimir una lista ' PARA NO ARRIESGAR A CAMBIOS INDESEADOS, SE SUELEN PASAR TUPLAS Y NO LISTAS
 def lista_comidas(food):
-    for x in food:
+    food[1] = 'guinda'
+    copy_food = food.copy()
+    copy_food[2] = 'kiwi'
+    copy_food.sort() #ordena alfabéticamente PUEDO USAR CUALQUIER METODO DEL MANEJO DE LISTAS!!!
+    for x in copy_food:
         me_comi = 'comí una %s' % x
         me_comi = 'comí una {food}'.format(food=x)
-        me_comi = f'comí una {x} '
+        me_comi = f'comí una {x} '#esta aparece con la version 3.6 de python y es la más copada
         print(me_comi)
         
-comidas = ['pera', 'manzana', 'banana']
+comidas = ['pera', 'manzana', 'banana', 'carozo']
 lista_comidas(comidas)
+
+
+#FUNCIONES RECURSIVAS
+def jugar(intento=1): 
+    respuesta = input("¿De qué color es una naranja? ") 
+    if respuesta != "naranja": 
+        if intento < 3: 
+            print ("\nFallaste! Inténtalo de nuevo" )
+            intento += 1 
+            jugar(intento) # Llamada recursiva 
+        else: 
+            print( "\nPerdiste!" )
+    else:
+        print ("\nGanaste!" )
+jugar()
+
+for i in range(5):
+    if i !=3:
+        print(i)
+        
+i = 1       
+while i !=5:   
+    i += 1
+    print(i) """
+    
+num = 10
+while num >= 1:
+    num -= 1
+    if num % 3 != 0:
+       print(num,end=	',' )

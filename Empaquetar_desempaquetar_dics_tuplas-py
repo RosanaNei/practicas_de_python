@@ -1,0 +1,111 @@
+#Empaquetar/Desempaquetar argumentos
+#Empaquetar y descomprimir argumentos en Python. Usamos dos operadores *(para tuplas) y **(para diccionarios)
+#EMPAQUETAR/DESEMPAQUETAR ARGUMENTOS POSICIONALES
+#Si utilizamos el operador * delante del nombre de un parámetro posicional, estaremos indicando que los argumentos pasados a la función 
+# se empaqueten en una tupla:
+def test_args(*args):
+    print(f'{args=}')
+test_args()
+test_args(1, 2, 3, 'pescado', 'salado', 'es')
+
+#si queremos pasar una lista como argumento no funciona, xq espera 4 y sólo recibe 1
+""" def fun(a, b, c, d):
+    print(a, b, c, d) 
+my_list = [1, 2, 3, 4]
+fun(my_list) """ #Exception has occurred: TypeError fun() missing 3 required positional arguments: 'b', 'c', and 'd'
+#DESEMPAQUETANDO Podemos usar * para descomprimir la lista de modo que todos sus elementos 
+# puedan pasarse como parámetros diferentes.el no. de argumentos debe ser la misma que la longitud de la lista que 
+# estamos desempaquetando para los argumentos.
+def fun(a, b, c, d):
+    print(a, b, c, d)
+my_list = [1, 2, 3, 4]
+fun(*my_list)
+#La función anterior mySum() "empaqueta" para empaquetar todos los argumentos que recibe esta llamada al método en 
+# una sola variable y por eso LOS SUMA!!
+def mySum(*args):
+    args[0]
+    return sum(args) 
+
+print(mySum(1, 2, 3, 4, 5))
+print(mySum(10, 20))
+
+def sum_all(v1, v2, *args):
+    total = 0
+    for value in (v1, v2) + args:
+        total += value
+    return total
+#PARAMETROS REQUERIDOS (OBLIGATORIOS) Y OPTATIVOS
+""" sum_all() """ #Exception has occurred: TypeErrormissing 2 required positional arguments: 'v1' and 'v2'
+#podemos utilizar esta estrategia para establecer en una función una serie de parámetros como requeridos y recibir 
+# el resto de argumentos como opcionales y empaquetados:
+sum_all(1, 2)
+sum_all(5, 9, 3, 8, 11, 21)
+
+#usar el asterisco * en la llamada a la función para desempaquetar los argumentos posicionales:
+def test_args(*args):
+    print(f'{args=}') #al poner el = después de args hace que se imprima la palabra args [args=(4, 3, 7, 9) vs (4, 3, 7, 9)]
+
+my_args = (4, 3, 7, 9)
+test_args(my_args)   # No existe desempaquetado!
+test_args(*my_args)  # Sí existe desempaquetado!
+
+def argumentos(*args):
+    valor = 0
+    for arg in args:
+        valor += arg
+        print(f'{arg}')
+    print(f'{args=} y {valor} ')
+lista = [1, 5, 8, 9]
+argumentos(*lista)
+
+#EMPAQUETAR/DESEMPAQUETAR ARGUMENTOS NOMINALES
+#Si utilizamos el operador ** delante del nombre de un parámetro nominal, estaremos indicando que los argumentos pasados a
+# la función se empaqueten en un diccionario:
+def test_kwargs(**kwargs):
+    print(f'{kwargs=}')
+
+test_kwargs()
+test_kwargs(a=4, b=3, c=7, d=9)
+
+def test_kwargs(**kwargs):
+    print(f'{kwargs=}')
+
+my_kwargs = {'a': 4, 'b': 3, 'c': 7, 'd': 9}
+test_kwargs(**my_kwargs)  # Sí existe desempaquetado!
+""" test_kwargs(my_kwargs)  """  # No existe desempaquetado! Exception has occurred: TypeError test_kwargs() takes 0 positional arguments but 1 was given
+
+#DOCUMENTACION - DOCSTRING 
+#podemos (y en muchos casos debemos) adjuntar documentación a la definición de una función incluyendo una cadena de texto (docstring) al comienzo de su cuerpo:
+
+def closest_int(value):
+    '''Returns the closest integer to the given value.
+    The operation is:
+        1. Compute distance to floor.
+        2. If distance less than a half, return floor.
+           Otherwise, return ceil.
+    '''
+    floor = int(value)
+    if value - floor < 0.5:
+        return floor
+    else:
+        return floor + 1
+print(closest_int(1.25))
+print(closest_int(3.78))
+
+help(closest_int)
+
+def sq(num):
+    '''returns square of number'''
+    return num*num
+
+def call_sq(num):
+    '''calls sq with num'''
+    ans = sq(num)
+    return ans
+
+def print_sq(num):
+    '''calls call_sq to get ans and prints it'''
+    ans = call_sq(num)
+    print(f'Square of {num} is {ans}')
+
+print_sq(5)

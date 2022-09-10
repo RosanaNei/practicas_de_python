@@ -57,12 +57,12 @@ for i in range(2, n // 2):
         print("It's not prime")
         break
 else:
-    print('Yeah! We have a prime number')
+    print('Yeah! We have a prime number')"""
 
 
 #usando _ si usamos rango no como una variable numérica
 for _ in range(3):
-    print('Repeat me 3 times!')"""
+    print('Repeat me 3 times!')
 
 #for anidados - Tablas
 for i in range(1, 4):

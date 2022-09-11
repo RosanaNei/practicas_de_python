@@ -168,5 +168,83 @@ v2 = [9, 2, 7, 3]
 for va, vb in zip(v1, v2):
     print (va * vb)
 
+#CUIDADO CON LAS COPIAS. Las listas son estructuras de datos mutables y esta característica nos obliga a tener 
+# cuidado cuando realizamos copias de listas, ya que la modificación de una de ellas puede afectar a la otra.
+original_list = [4, 3, 7, 1]
+copy_list = original_list
+original_list[0] = 15
+print(original_list)
+print(copy_list)  #se modificaron ambas
+#SOLUCION
+original_list = [4, 3, 7, 1]
+copy_list = original_list.copy()
+original_list[0] = 15
+print(original_list)
+print(copy_list)  #la copia preserva la lista original
+
+
+# VERACIDAD MULTIPLE Si bien podemos usar sentencias condicionales para comprobar la veracidad de determinadas 
+# expresiones, Python nos ofrece dos funciones «built-in» con las que podemos evaluar si se cumplen todas las 
+# condiciones all() o si se cumple alguna condición any(). Estas funciones trabajan sobre iterables, y el caso 
+# más evidente es una lista.
+#versión clásica:
+
+word = 'python'
+
+if len(word) > 4 and word.startswith('p') and word.count('y') >= 1:
+    print('Cool word!')
+else:
+    print('No thanks')
+    
+# versión con veracidad múltiple usando all(), donde se comprueba que se cumplan todas las expresiones:
+word = 'python'
+
+enough_length = len(word) > 4            # True
+right_beginning = word.startswith('p')   # True
+min_ys = word.count('y') >= 1            # True
+
+is_cool_word = all([enough_length, right_beginning, min_ys])
+
+if is_cool_word:
+    print('Cool word!')
+else:
+    print('No thanks')
+
+#versión con veracidad múltiple usando any(), donde se comprueba que se cumpla alguna expresión:
+word = 'yeah'
+
+enough_length = len(word) > 4            # False
+right_beginning = word.startswith('p')   # False
+min_ys = word.count('y') >= 1            # True
+
+is_fine_word = any([enough_length, right_beginning, min_ys])
+
+if is_fine_word:
+    print('Fine word!')
+else:
+    print('No thanks')
+#Este enfoque puede ser interesante cuando se manejan muchas condiciones o bien cuando queremos separar 
+#las condiciones y agruparlas en una única lista.
+
+frase = 'Este enfoque puede ser interesante cuando se manejan muchas condiciones o bien cuando queremos separar'
+cont = 0
+for letra in frase:
+    cont += 1
+print(cont)
+
+import sys
+
+filename = sys.argv[0]
+arg1 = sys.argv[1]
+arg2 = float(sys.argv[2])
+arg3 = int(sys.argv[3])
+arg4 = sys.argv[4]
+
+print(f'{arg1=}')
+print(f'{arg2=}')
+print(f'{arg3=}')
+print(f'{arg4=}')
+
+
 
 

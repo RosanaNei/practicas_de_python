@@ -44,11 +44,10 @@ def mcd(a,b):
     return mcd
 
 print(mcd(400, 436))
-
 def maximo_comun_divisor_recursivo(a, b):
     if b == 0:
         return a
-    return maximo_comun_divisor_recursivo(b, a % b)
+    #return maximo_comun_divisor_recursivo(b, a % b)
 
 print(maximo_comun_divisor_recursivo(400, 436))
 
